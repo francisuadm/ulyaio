@@ -207,3 +207,9 @@ docker image prune -a -f
 ```
 
 
+```
+sudo docker network rm nextcloud-aio
+sudo docker volume ls --filter "dangling=true"
+sudo docker volume prune --filter all=1
+```
+
