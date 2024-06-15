@@ -204,12 +204,15 @@ docker volume prune -f
 docker network ls
 docker network prune -f
 docker image prune -a -f
+docker volume prune --filter all=1 -f
+docker volume ls --filter "dangling=true"
+docker ps --filter "status=exited"
+docker ps --format {{.Names}}
 ```
 
 
 ```
-sudo docker network rm nextcloud-aio
-sudo docker volume ls --filter "dangling=true"
-sudo docker volume prune --filter all=1
+docker compose up -d --force-recreate
+docker compose up -d --rebuild
 ```
 
