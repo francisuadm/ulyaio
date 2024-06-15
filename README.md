@@ -216,3 +216,33 @@ docker compose up -d --force-recreate
 docker compose up -d --rebuild
 ```
 
+
+
+
+### uly-aio.duckdns.org
+```
+sudo docker run \
+--init \
+--sig-proxy=false \
+--name nextcloud-aio-mastercontainer \
+--restart always \
+--publish 80:80 \
+--publish 8080:8080 \
+--publish 8443:8443 \
+--volume nextcloud_aio_mastercontainer:/mnt/docker-aio-config \
+--volume /var/run/docker.sock:/var/run/docker.sock:ro \
+--env SKIP_DOMAIN_VALIDATION=true \
+--add-host ulyinfo.duckdns.org:73.162.185.22 \
+nextcloud/all-in-one:latest
+```
+
+### nano /etc/hosts
+```
+127.0.0.1       uly-aio.duckdns.org
+::1             localhost ip6-localhost ip6-loopback
+ff02::1         ip6-allnodes
+ff02::2         ip6-allrouters
+# --- BEGIN PVE ---
+127.0.1.1 nc-aio.ulyhome.lan nc-aio
+# --- END PVE ---
+```
